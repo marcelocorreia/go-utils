@@ -6,9 +6,10 @@ import (
 	"os"
 )
 
-type Runtime interface {
-	RunCommand(name string, arg ...string) string
+type RuntimeService interface {
+	RunCommand(command string, arg []string) (string, error)
 	CheckBinaryInPath(binary string) bool
+	RunCommandLogStream(command string, arg []string) (error)
 }
 
 type RuntimeHelper struct {
