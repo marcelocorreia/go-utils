@@ -11,7 +11,7 @@ var (
 	logger *logging.Logger
 )
 
-type VaultRunner interface {
+type VaultHelper interface {
 	GetClient()
 	GetNewClientToken(clientId string) (string, error)
 	Init()
@@ -22,12 +22,12 @@ type VaultRunner interface {
 	WriteSecret(path string, secret map[string]interface{}) (*api.Secret, error)
 }
 
-type VaultHelper struct {
+type VaultService struct {
 	VaultAddress string `json:"vault_address" json:"vault_address"`
 	VaultToken string `json:"vault_token" yaml:"vault_token"`
 }
 
-func (v VaultHelper) GetClient() api.Client {
+func (v VaultService) GetClient() api.Client {
 	os.Setenv("VAULT_ADDR", v.VaultAddress)
 	config := api.DefaultConfig()
 	config.Address = v.VaultAddress
@@ -40,7 +40,7 @@ func (v VaultHelper) GetClient() api.Client {
 	return *client
 }
 
-func (v VaultHelper) WriteSecret(path string, secret map[string]interface{}) (*api.Secret, error) {
+func (v VaultService) WriteSecret(path string, secret map[string]interface{}) (*api.Secret, error) {
 	os.Setenv("VAULT_ADDR", v.VaultAddress)
 	client := v.GetClient()
 
@@ -54,7 +54,7 @@ func (v VaultHelper) WriteSecret(path string, secret map[string]interface{}) (*a
 	return secResp, nil
 }
 
-func (v VaultHelper) ReadSecret(path string) (*api.Secret, error) {
+func (v VaultService) ReadSecret(path string) (*api.Secret, error) {
 	os.Setenv("VAULT_ADDR", v.VaultAddress)
 	client := v.GetClient()
 	client.SetToken(v.VaultToken)
@@ -67,19 +67,19 @@ func (v VaultHelper) ReadSecret(path string) (*api.Secret, error) {
 	return resp, nil
 }
 
-func (v VaultHelper) RootToken() (string) {
+func (v VaultService) RootToken() (string) {
 	os.Setenv("VAULT_ADDR", v.VaultAddress)
 	
 	return v.VaultToken
 }
 
-func (v VaultHelper) GetNewClientToken(clientId string) (string, error) {
+func (v VaultService) GetNewClientToken(clientId string) (string, error) {
 	os.Setenv("VAULT_ADDR", v.VaultAddress)
 	
 	return "", nil
 }
 
-func (v VaultHelper) SecretExists(path string) bool {
+func (v VaultService) SecretExists(path string) bool {
 	_, err := v.ReadSecret(path)
 	if err != nil {
 		return false
@@ -88,7 +88,7 @@ func (v VaultHelper) SecretExists(path string) bool {
 	return true
 }
 
-func (v VaultHelper) Mount(path string, mountType string) (error) {
+func (v VaultService) Mount(path string, mountType string) (error) {
 	client := v.GetClient()
 	client.SetToken(v.VaultToken)
 	mountInfo := &api.MountInput{
@@ -104,7 +104,7 @@ func (v VaultHelper) Mount(path string, mountType string) (error) {
 	return nil
 }
 
-func (v VaultHelper) Mounts() (map[string]*api.MountOutput, error) {
+func (v VaultService) Mounts() (map[string]*api.MountOutput, error) {
 	client := v.GetClient()
 	oo, err := client.Sys().ListMounts()
 	if err != nil {
@@ -114,7 +114,7 @@ func (v VaultHelper) Mounts() (map[string]*api.MountOutput, error) {
 	return oo, nil
 }
 
-func (v VaultHelper) MountExists(mount string) (bool, error) {
+func (v VaultService) MountExists(mount string) (bool, error) {
 	mounts, err := v.Mounts()
 	if err != nil {
 		return false, err

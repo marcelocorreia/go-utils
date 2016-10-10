@@ -7,7 +7,7 @@ import (
 )
 
 func TestMountsExists(t *testing.T) {
-	vh := VaultHelper{
+	vh := VaultService{
 		VaultAddress:"http://127.0.0.1:8200",
 		VaultToken: "86447a85-6389-3e94-a95e-b9c57bdde1a1",
 	}
@@ -16,13 +16,16 @@ func TestMountsExists(t *testing.T) {
 }
 
 func TestListMounts(t *testing.T) {
-	vh := VaultHelper{
+	vh := VaultService{
 		VaultAddress:"http://127.0.0.1:8200",
 		VaultToken: "86447a85-6389-3e94-a95e-b9c57bdde1a1",
 	}
 
 	mounts, _ := vh.Mounts()
 	size := len(mounts)
-	fmt.Printf("Found %d mounts", size)
+	fmt.Printf("Found %d mounts\n", size)
+	for _,m:= range mounts{
+		fmt.Println(m)
+	}
 	assert.True(t, size > 0)
 }
