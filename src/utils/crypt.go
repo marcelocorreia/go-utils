@@ -10,9 +10,7 @@ import (
 )
 
 
-// encrypt string to base64 crypto using AES
 func Base64Encrypt(key []byte, text string) (string, error) {
-	// key := []byte(keyText)
 	plaintext := []byte(text)
 
 	block, err := aes.NewCipher(key)
@@ -20,8 +18,6 @@ func Base64Encrypt(key []byte, text string) (string, error) {
 		return "", err
 	}
 
-	// The IV needs to be unique, but not secure. Therefore it's common to
-	// include it at the beginning of the ciphertext.
 	ciphertext := make([]byte, aes.BlockSize + len(plaintext))
 	iv := ciphertext[:aes.BlockSize]
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
@@ -31,11 +27,10 @@ func Base64Encrypt(key []byte, text string) (string, error) {
 	stream := cipher.NewCFBEncrypter(block, iv)
 	stream.XORKeyStream(ciphertext[aes.BlockSize:], plaintext)
 
-	// convert to base64
 	return base64.URLEncoding.EncodeToString(ciphertext), nil
 }
 
-// decrypt from base64 to decrypted string
+
 func Base64Decrypt(key []byte, cryptoText string) (string, error) {
 	ciphertext, _ := base64.URLEncoding.DecodeString(cryptoText)
 
@@ -43,10 +38,8 @@ func Base64Decrypt(key []byte, cryptoText string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-
-	// The IV needs to be unique, but not secure. Therefore it's common to
-	// include it at the beginning of the ciphertext.
-	if len(ciphertext) < aes.BlockSize {
+ 
+ 	if len(ciphertext) < aes.BlockSize {
 		return "", err
 	}
 	iv := ciphertext[:aes.BlockSize]
@@ -54,7 +47,6 @@ func Base64Decrypt(key []byte, cryptoText string) (string, error) {
 
 	stream := cipher.NewCFBDecrypter(block, iv)
 
-	// XORKeyStream can work in-place if the two arguments are the same.
 	stream.XORKeyStream(ciphertext, ciphertext)
 	return fmt.Sprintf("%s", ciphertext), nil
 }

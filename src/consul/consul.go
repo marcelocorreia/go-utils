@@ -138,3 +138,20 @@ func (c ConsulService) DeRegister(service string) (error) {
 	return client.Agent().ServiceDeregister(service)
 }
 
+func (c ConsulService) ListKeys(path string) ([]string, error) {
+	client, err := api.NewClient(api.DefaultConfig())
+	
+	if err != nil {
+		return []string{}, err
+	}
+	
+	// Get a handle to the KV API
+	kv := client.KV()
+	resp, _, err := kv.Keys(path, "", nil)
+	
+	if err != nil {
+		return []string{}, err
+	}
+	return resp, nil
+}
+
