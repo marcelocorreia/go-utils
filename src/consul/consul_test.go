@@ -60,4 +60,13 @@ func TestConsulService_Register(t *testing.T) {
 	
 	consulService.DeRegister(serviceName)
 }
-
+ func TestConsulService_ListKeys(t *testing.T) {
+	 keys,err:=consulService.ListKeys("/vault")
+	 if err != nil {
+		 assert.Nil(t,err)
+	 }
+	 
+	 for _,k:= range keys{
+		 fmt.Println(k)
+	 }
+ }

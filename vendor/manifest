@@ -9,11 +9,23 @@
 			"path": "/spew"
 		},
 		{
+			"importpath": "github.com/fatih/structs",
+			"repository": "https://github.com/fatih/structs",
+			"revision": "dc3312cb1a4513a366c4c9e622ad55c32df12ed3",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/hashicorp/consul/api",
 			"repository": "https://github.com/hashicorp/consul",
 			"revision": "eb44c4cf5d33c8d514e7b6c8187f25bb41a8476f",
 			"branch": "master",
 			"path": "/api"
+		},
+		{
+			"importpath": "github.com/hashicorp/errwrap",
+			"repository": "https://github.com/hashicorp/errwrap",
+			"revision": "7554cd9344cec97297fa6649b055a8c98c2a1e55",
+			"branch": "master"
 		},
 		{
 			"importpath": "github.com/hashicorp/go-cleanhttp",
@@ -22,11 +34,56 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/hashicorp/go-multierror",
+			"repository": "https://github.com/hashicorp/go-multierror",
+			"revision": "8c5f0ad9360406a3807ce7de6bc73269a91a6e51",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/hashicorp/go-rootcerts",
+			"repository": "https://github.com/hashicorp/go-rootcerts",
+			"revision": "6bb64b370b90e7ef1fa532be9e591a81c3493e00",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/hashicorp/hcl",
+			"repository": "https://github.com/hashicorp/hcl",
+			"revision": "6f5bfed9a0a22222fbe4e731ae3481730ba41e93",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/hashicorp/serf/coordinate",
 			"repository": "https://github.com/hashicorp/serf",
 			"revision": "1d4fa605f6ff3ed628d7ae5eda7c0e56803e72a5",
 			"branch": "master",
 			"path": "/coordinate"
+		},
+		{
+			"importpath": "github.com/hashicorp/vault/api",
+			"repository": "https://github.com/hashicorp/vault",
+			"revision": "80281c16fcaab7aa2ad0a67816c0bdc307476a80",
+			"branch": "master",
+			"path": "/api"
+		},
+		{
+			"importpath": "github.com/hashicorp/vault/helper/compressutil",
+			"repository": "https://github.com/hashicorp/vault",
+			"revision": "80281c16fcaab7aa2ad0a67816c0bdc307476a80",
+			"branch": "master",
+			"path": "/helper/compressutil"
+		},
+		{
+			"importpath": "github.com/hashicorp/vault/helper/jsonutil",
+			"repository": "https://github.com/hashicorp/vault",
+			"revision": "80281c16fcaab7aa2ad0a67816c0bdc307476a80",
+			"branch": "master",
+			"path": "/helper/jsonutil"
+		},
+		{
+			"importpath": "github.com/mitchellh/mapstructure",
+			"repository": "https://github.com/mitchellh/mapstructure",
+			"revision": "a6ef2f080c66d0a2e94e97cf74f80f772855da63",
+			"branch": "master"
 		},
 		{
 			"importpath": "github.com/op/go-logging",
@@ -40,6 +97,12 @@
 			"revision": "792786c7400a136282c1664665ae0a8db921c6c2",
 			"branch": "master",
 			"path": "/difflib"
+		},
+		{
+			"importpath": "github.com/sethgrid/pester",
+			"repository": "https://github.com/sethgrid/pester",
+			"revision": "2a102734c18c43c74fd0664e06cd414cf9602b93",
+			"branch": "master"
 		},
 		{
 			"importpath": "github.com/stretchr/testify/assert",
@@ -58,6 +121,12 @@
 			"importpath": "gopkg.in/tomb.v2",
 			"repository": "https://gopkg.in/tomb.v2",
 			"revision": "14b3d72120e8d10ea6e6b7f87f7175734b1faab8",
+			"branch": "v2"
+		},
+		{
+			"importpath": "gopkg.in/yaml.v2",
+			"repository": "https://gopkg.in/yaml.v2",
+			"revision": "a5b47d31c556af34a302ce5d659e6fea44d90de0",
 			"branch": "v2"
 		}
 	]
