@@ -1,6 +1,9 @@
 package machine_io
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"gopkg.in/yaml.v2"
+)
 
 func JsonOutput(obj interface{}) (string, error) {
 	out, err := json.MarshalIndent(obj, "", " ")
@@ -10,12 +13,12 @@ func JsonOutput(obj interface{}) (string, error) {
 	return string(out), nil
 }
 
-//func YamlOutput(obj interface{}) (string, error) {
-//	out, err :=
-//	if err != nil {
-//		return "", nil
-//	}
-//	return string(out), nil
-//}
+func YamlOutput(obj interface{}) (string, error) {
+	out, err := yaml.Marshal(obj)
+	if err != nil {
+		return "", nil
+	}
+	return string(out), nil
+}
 
 
