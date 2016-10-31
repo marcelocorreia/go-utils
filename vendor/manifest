@@ -48,7 +48,7 @@
 		{
 			"importpath": "github.com/hashicorp/hcl",
 			"repository": "https://github.com/hashicorp/hcl",
-			"revision": "6f5bfed9a0a22222fbe4e731ae3481730ba41e93",
+			"revision": "99ce73d4fe576449f7a689d4fc2b2ad09a86bdaa",
 			"branch": "master"
 		},
 		{
