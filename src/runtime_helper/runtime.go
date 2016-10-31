@@ -13,7 +13,11 @@ type RuntimeService interface {
 }
 
 type RuntimeHelper struct {
+	
+}
 
+func GetRuntimeService() (RuntimeService) {
+	return RuntimeHelper{}
 }
 
 func (r RuntimeHelper) RunCommand(command string, arg []string) (string, error) {
@@ -25,7 +29,7 @@ func (r RuntimeHelper) RunCommand(command string, arg []string) (string, error) 
 		return "", err
 	}
 	return out.String(), err
-
+	
 }
 func (r RuntimeHelper) CheckBinaryInPath(binary string) bool {
 	_, err := exec.LookPath(binary)
@@ -40,7 +44,7 @@ func (r RuntimeHelper) RunCommandLogStream(command string, arg []string) (error)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
-
+	
 	if err != nil {
 		return err
 	}

@@ -3,6 +3,7 @@ package machine_io
 import (
 	"testing"
 	"fmt"
+	"github.com/stretchr/testify/assert"
 )
 
 type TestType struct {
@@ -13,6 +14,18 @@ type TestType struct {
 
 func TestOutput(t *testing.T) {
 	
+	dad := Sample()
+	
+	outJ, errJ := JsonOutput(dad)
+	assert.Nil(t, errJ)
+	fmt.Println(outJ)
+	outY, errY := YamlOutput(dad)
+	assert.Nil(t, errY)
+	
+	fmt.Println(outY)
+}
+
+func Sample() (TestType) {
 	son := TestType{
 		Name: "Jim", Age:50,
 	}
@@ -25,12 +38,7 @@ func TestOutput(t *testing.T) {
 		Name: "John", Age:98,
 		Children:[]TestType{son, daughter},
 	}
-	
-	outJ, _ := JsonOutput(dad)
-	fmt.Println(outJ)
-	outY, _ := YamlOutput(dad)
-	
-	fmt.Println(outY)
+	return dad
 }
 
 

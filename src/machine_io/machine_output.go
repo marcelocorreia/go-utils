@@ -20,5 +20,3 @@ func YamlOutput(obj interface{}) (string, error) {
 	}
 	return string(out), nil
 }
-
-
