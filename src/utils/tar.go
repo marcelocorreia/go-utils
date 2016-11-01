@@ -7,9 +7,9 @@ import (
 	"bytes"
 )
 
-func Tar(source, target string) {
+func Tar(source, target string) error {
 	args := []string{"-cvzf", target, source}
-	cmd := exec.Command("tar", args)
+	cmd := exec.Command("tar", args...)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()
@@ -24,7 +24,7 @@ func Untar(tarball, targetDir string) error {
 	os.Chdir(targetDir)
 	args := []string{"-xvzf", tarball}
 	
-	cmd := exec.Command("tar", args)
+	cmd := exec.Command("tar", args...)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()
