@@ -5,21 +5,30 @@ import (
 	"fmt"
 )
 
-type ConsulService struct {
-}
 
-type Consul interface {
+type ConsulService interface {
 	SaveUpdateKV(keyPath string, value string) (error)
-	GetKV(k string) (string, error)
-	Register(service string, address string, port int, check *api.AgentServiceCheck, tags []string) (error)
-	Deregister(service string) (error)
+	KeyExists(path string) (bool, error)
 	DeleteKV(k string) (error)
-	KeyExists(path string)
+	GetKV(k string) (string, error)
 	ListServices() (map[string][]string)
 	ListNodes() ([]*api.Node)
+	Register(service string, address string, port int, check map[string]string, tags []string) (error)
+	DeRegister(service string) (error)
+	ListKeys(path string) ([]string, error)
 }
 
-func (c ConsulService) SaveUpdateKV(keyPath string, value string) (error) {
+type Consul struct {
+
+}
+
+func New()(*ConsulService){
+	var cs ConsulService
+	cs = Consul{}
+	return &cs
+}
+
+func (c Consul) SaveUpdateKV(keyPath string, value string) (error) {
 	ccc, err := api.NewClient(api.DefaultConfig())
 	kv := ccc.KV()
 	p := &api.KVPair{Key: keyPath, Value: []byte(value)}
@@ -31,7 +40,7 @@ func (c ConsulService) SaveUpdateKV(keyPath string, value string) (error) {
 	return nil
 }
 
-func (c ConsulService) KeyExists(path string) (bool, error) {
+func (c Consul) KeyExists(path string) (bool, error) {
 	fmt.Println("Checking path:", path)
 	
 	client, err := api.NewClient(api.DefaultConfig())
@@ -56,7 +65,7 @@ func (c ConsulService) KeyExists(path string) (bool, error) {
 	return false, nil
 }
 
-func (c ConsulService) DeleteKV(k string) (error) {
+func (c Consul) DeleteKV(k string) (error) {
 	client, err := api.NewClient(api.DefaultConfig())
 	if err != nil {
 		return err
@@ -72,7 +81,7 @@ func (c ConsulService) DeleteKV(k string) (error) {
 	return nil
 }
 
-func (c ConsulService) GetKV(k string) (string, error) {
+func (c Consul) GetKV(k string) (string, error) {
 	// Get a new client
 	
 	client, err := api.NewClient(api.DefaultConfig())
@@ -93,7 +102,7 @@ func (c ConsulService) GetKV(k string) (string, error) {
 	return string(pair.Value), nil
 }
 
-func (c ConsulService) ListServices() (map[string][]string) {
+func (c Consul) ListServices() (map[string][]string) {
 	client, _ := api.NewClient(api.DefaultConfig())
 	cat := client.Catalog()
 	services, _, _ := cat.Services(nil)
@@ -101,7 +110,7 @@ func (c ConsulService) ListServices() (map[string][]string) {
 	return services
 }
 
-func (c ConsulService) ListNodes() ([]*api.Node) {
+func (c Consul) ListNodes() ([]*api.Node) {
 	client, _ := api.NewClient(api.DefaultConfig())
 	cat := client.Catalog()
 	nodes, _, _ := cat.Nodes(nil)
@@ -109,7 +118,7 @@ func (c ConsulService) ListNodes() ([]*api.Node) {
 	return nodes
 }
 
-func (c ConsulService) Register(service string, address string, port int, check map[string]string, tags []string) (error) {
+func (c Consul) Register(service string, address string, port int, check map[string]string, tags []string) (error) {
 	client, _ := api.NewClient(api.DefaultConfig())
 	
 	chk := &api.AgentServiceCheck{
@@ -133,12 +142,12 @@ func (c ConsulService) Register(service string, address string, port int, check 
 	return nil
 }
 
-func (c ConsulService) DeRegister(service string) (error) {
+func (c Consul) DeRegister(service string) (error) {
 	client, _ := api.NewClient(api.DefaultConfig())
 	return client.Agent().ServiceDeregister(service)
 }
 
-func (c ConsulService) ListKeys(path string) ([]string, error) {
+func (c Consul) ListKeys(path string) ([]string, error) {
 	client, err := api.NewClient(api.DefaultConfig())
 	
 	if err != nil {

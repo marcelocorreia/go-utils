@@ -1,7 +1,7 @@
 package folder_utils
 
 import (
-	"utils"
+	"github.com/marcelocorreia/go-utils/utils"
 	"os"
 )
 

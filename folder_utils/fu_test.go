@@ -3,8 +3,8 @@ package folder_utils_test
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
-	"folder_utils"
-	"utils"
+	"github.com/marcelocorreia/go/folder_utils"
+	"github.com/marcelocorreia/go/utils"
 	"os"
 )
 

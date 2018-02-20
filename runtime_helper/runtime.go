@@ -1,4 +1,4 @@
-package runtime
+package runtime_helper
 
 import (
 	"os/exec"
@@ -12,13 +12,7 @@ type RuntimeService interface {
 	RunCommandLogStream(command string, arg []string) (error)
 }
 
-type RuntimeHelper struct {
-	
-}
-
-func GetRuntimeService() (RuntimeService) {
-	return RuntimeHelper{}
-}
+type RuntimeHelper struct {}
 
 func (r RuntimeHelper) RunCommand(command string, arg []string) (string, error) {
 	cmd := exec.Command(command, arg...)
@@ -29,8 +23,8 @@ func (r RuntimeHelper) RunCommand(command string, arg []string) (string, error) 
 		return "", err
 	}
 	return out.String(), err
-	
 }
+
 func (r RuntimeHelper) CheckBinaryInPath(binary string) bool {
 	_, err := exec.LookPath(binary)
 	if err != nil {
@@ -50,3 +44,4 @@ func (r RuntimeHelper) RunCommandLogStream(command string, arg []string) (error)
 	}
 	return nil
 }
+

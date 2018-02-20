@@ -1,0 +1,9 @@
+package: github.com/marcelocorreia/go-utils
+import:
+- package: github.com/hashicorp/consul
+  subpackages:
+  - api
+testImport:
+- package: github.com/stretchr/testify
+  subpackages:
+  - assert

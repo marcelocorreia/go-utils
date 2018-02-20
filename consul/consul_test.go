@@ -1,14 +1,18 @@
-package consul
+package consul_test
 
 import (
 	"testing"
 	"github.com/hashicorp/consul/api"
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"github.com/marcelocorreia/go-utils/consul"
 )
 
 var consulService ConsulService
 
+func init(){
+	consulService = consul.New()
+}
 func TestConsulService_Init(t *testing.T) {
 	config := api.DefaultConfig()
 	

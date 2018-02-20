@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"errors"
 )
 
 func CopyFile(source string, dest string) (err error) {
@@ -40,31 +41,25 @@ func ListDir(dir string) ([]os.FileInfo) {
 		panic(err)
 	}
 
-	for _, file := range files {
-		if file.IsDir() {
-			fmt.Println(" -", file.Name())
-		}
-	}
-
 	return files
 }
 
-func ListDirWithExceptions(dir string, exceptions []string) ([]os.FileInfo) {
+func ListDirWithExceptions(dir string, exceptions []string) ([]os.FileInfo, error) {
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
-		errorResp := []os.FileInfo{}
-		return errorResp
-	}
 
+		return []os.FileInfo{}, err
+	}
+	resp := []string{}
 	for _, file := range files {
 		if file.IsDir() {
 			if !StringInSlice(file.Name(), exceptions) {
-				fmt.Println(file.Name())
+				resp = append(resp, file.Name())
 			}
 		}
 	}
 
-	return files
+	return files, nil
 }
 
 func CopyDir(source string, dest string) (err error) {
@@ -121,13 +116,23 @@ func Exists(path string) (bool, error) {
 	return true, err
 }
 
-func CreatePath(destDir string) () {
-	exists, _ := Exists(destDir)
+func CreateNewDirectoryIfNil(path string) (error) {
+	exists, err := Exists(path)
+	if err != nil {
+		return err
+	}
 	if !exists {
-		os.MkdirAll(destDir, 00750)
+		os.MkdirAll(path, 00750)
+		return nil
+	} else {
+		return errors.New("path already exists. please check your parameters")
 	}
 }
 
-func StringToNewFile(s string, path string) {
-
+func WriteFile(path string, content string) (error) {
+	err := ioutil.WriteFile(path, []byte(content), 0750)
+	if err != nil {
+		return err
+	}
+	return nil
 }
