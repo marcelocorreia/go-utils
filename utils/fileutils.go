@@ -116,16 +116,16 @@ func Exists(path string) (bool, error) {
 	return true, err
 }
 
-func CreateNewDirectoryIfNil(path string) (error) {
+func CreateNewDirectoryIfNil(path string) (bool,error) {
 	exists, err := Exists(path)
 	if err != nil {
-		return err
+		return false,err
 	}
 	if !exists {
 		os.MkdirAll(path, 00750)
-		return nil
+		return true,nil
 	} else {
-		return errors.New("path already exists. please check your parameters")
+		return false,errors.New("path already exists. please check your parameters")
 	}
 }
 

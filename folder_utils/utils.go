@@ -5,11 +5,18 @@ import (
 	"os"
 )
 
-type FolderUtils struct {
-	
+type FolderUtils interface {
+	InitialCheckAndCreate(path string) (error)
+}
+type FU struct {
 }
 
-func (fu FolderUtils) InitialCheckAndCreate(path string) (error) {
+func New() (*FolderUtils) {
+	var fu FolderUtils
+	fu = FU{}
+	return &fu
+}
+func (fu FU) InitialCheckAndCreate(path string) (error) {
 	result, err := utils.Exists(path)
 	if err != nil {
 		return err
