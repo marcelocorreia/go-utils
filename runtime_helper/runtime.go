@@ -10,7 +10,7 @@ import (
 type RuntimeService interface {
 	RunCommand(command string, arg ...string) (string, error)
 	RunCommandLogStream(command string, arg ...string) (error)
-	RunThis(arg ...string) (string, error)
+	RunThis(fullCommand string) (string, error)
 	CheckBinaryInPath(binary string) bool
 }
 
@@ -22,8 +22,16 @@ func New() (*RuntimeService) {
 	return &rt
 }
 
-func (r RuntimeHelper) RunThis(arg ...string) (string, error) {
-	cmd := exec.Command(strings.Split(arg[0], " ")[0], arg[1:]...)
+func (r RuntimeHelper) RunThis(fullCommand string) (string, error) {
+	c := strings.Split(fullCommand, " ")[0]
+	a := strings.Join(strings.Split(fullCommand, " ")[1:], " ")
+	var args []string
+	if len(a) == 0 {
+		args = []string{}
+	} else {
+		args = nil
+	}
+	cmd := exec.Command(c, args...)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()

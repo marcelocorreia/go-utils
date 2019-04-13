@@ -5,7 +5,7 @@ before:
     - go generate ./...
     - go test ./... -coverprofile dist/main-cover.out -v
     - go tool cover -html=dist/main-cover.out -o dist/dist-coverage.html
-    - cp dist/dist-coverage.html dist/index.html
+    - cp dist/dist-coverage.html coverage/index.html
 
 builds:
   - env:
