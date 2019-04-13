@@ -21,9 +21,11 @@ snapshot:
 	goreleaser  release --snapshot  --rm-dist --debug
 
 release: _setup-versions
-	git tag $(NEXT_VERSION)
-	git push --tags
-	$(call git_push,Release $(NEXT_VERSION))
+	-git tag $(NEXT_VERSION)
+	-git add .
+	-git commit -m "Release: $(NEXT_VERSION)"
+	-git push
+	-git push --tags
 	goreleaser release
 
 all-versions:
