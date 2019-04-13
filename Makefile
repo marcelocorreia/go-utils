@@ -24,11 +24,11 @@ release: _setup-versions _tag-push
 	goreleaser release  --rm-dist
 
 _tag-push:
-	-git add .
-	-git commit -m "Release: $(NEXT_VERSION)"
-	-git tag $(NEXT_VERSION)
-	-git push
-	-git push --tags
+	git add .
+	git commit -m "Release: $(NEXT_VERSION)"
+	git tag $(NEXT_VERSION)
+	git push
+	git push --tags
 
 all-versions:
 	@git ls-remote --tags $(GIT_REMOTE)

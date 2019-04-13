@@ -131,7 +131,7 @@ func (r RuntimeHelper) RunThis(fullCommand string) (string, error) <span class="
         if len(a) == 0 </span><span class="cov8" title="1">{
                 args = []string{}
         }</span> else<span class="cov8" title="1"> {
-                args = nil
+                args = strings.Split(a, " ")
         }</span>
         <span class="cov8" title="1">cmd := exec.Command(c, args...)
         var out bytes.Buffer
