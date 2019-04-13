@@ -29,7 +29,7 @@ func (r RuntimeHelper) RunThis(fullCommand string) (string, error) {
 	if len(a) == 0 {
 		args = []string{}
 	} else {
-		args = nil
+		args = strings.Split(a, " ")
 	}
 	cmd := exec.Command(c, args...)
 	var out bytes.Buffer
