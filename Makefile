@@ -19,7 +19,7 @@ snapshot:
 	goreleaser  release --snapshot  --rm-dist --debug
 
 release:
-	goreleaser release --rm-dist --debug
+	goreleaser release
 
 _dep-ensure:
 	dep ensure
