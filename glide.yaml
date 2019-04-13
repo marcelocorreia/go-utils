@@ -1,6 +1,0 @@
-package: github.com/marcelocorreia/go-utils
-import:
-testImport:
-- package: github.com/stretchr/testify
-  subpackages:
-  - assert

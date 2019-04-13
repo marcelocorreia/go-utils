@@ -1,11 +1,31 @@
-test: consul-dev-start go-test
-	$(MAKE) consul-dev-stop
+#test: consul-dev-start go-test
+#	$(MAKE) consul-dev-stop
+#
+#go-test:
+#	go test $$( glide nv)
+#
+#deps:
+#	glide install
+#
+#deps-update:
+#	glide update
 
-go-test:
-	go test $$( glide nv)
+SCAF := go run cmd/scafold/main.go
+GITHUB_USER ?= marcelocorreia
+GIT_REPO_NAME ?= go-utils
 
-deps:
-	glide install
+snapshot:
+	-mkdir -p dist coverage
+	goreleaser  release --snapshot  --rm-dist --debug
 
-deps-update:
-	glide update
+release:
+	goreleaser release --rm-dist --debug
+
+_dep-ensure:
+	dep ensure
+
+_open-page:
+	open https://github.com/$(GITHUB_USER)/$(GIT_REPO_NAME).git
+
+_open-coverage:
+	open ./coverage/index.html

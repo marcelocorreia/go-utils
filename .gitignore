@@ -4,7 +4,7 @@ forks/
 target/
 demo/
 pkg/
-vendor/src/
+vendor/
 .idea/
 .vagrant/
 *zip
