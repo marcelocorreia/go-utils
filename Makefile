@@ -26,7 +26,7 @@ release: _setup-versions
 	-git tag $(NEXT_VERSION)
 	-git push
 	-git push --tags
-	goreleaser release  --rm-dist 
+	goreleaser release  --rm-dist
 
 all-versions:
 	@git ls-remote --tags $(GIT_REMOTE)

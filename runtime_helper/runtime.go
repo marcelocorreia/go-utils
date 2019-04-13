@@ -4,6 +4,7 @@ import (
 	"os/exec"
 	"bytes"
 	"os"
+	"strings"
 )
 
 type RuntimeService interface {
@@ -13,16 +14,16 @@ type RuntimeService interface {
 	CheckBinaryInPath(binary string) bool
 }
 
-type RuntimeHelper struct {}
+type RuntimeHelper struct{}
 
-func New()(*RuntimeService){
+func New() (*RuntimeService) {
 	var rt RuntimeService
 	rt = RuntimeHelper{}
 	return &rt
 }
 
 func (r RuntimeHelper) RunThis(arg ...string) (string, error) {
-	cmd := exec.Command(arg[0], arg[1:]...)
+	cmd := exec.Command(strings.Split(arg[0], " ")[0], arg[1:]...)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()
@@ -56,10 +57,9 @@ func (r RuntimeHelper) RunCommandLogStream(command string, arg ...string) (error
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
-	
+
 	if err != nil {
 		return err
 	}
 	return nil
 }
-
