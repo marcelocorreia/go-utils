@@ -4,6 +4,7 @@ import (
 	"log"
 	"crypto/rand"
 	"strings"
+	"unicode"
 )
 
 const (
@@ -77,3 +78,13 @@ func TrimFirstRune(s string) string {
 func TrimLastRune(s string) string {
 	return s[:len(s)-1]
 }
+
+func isASCII(s string) bool {
+	for i := 0; i < len(s); i++ {
+		if s[i] > unicode.MaxASCII {
+			return false
+		}
+	}
+	return true
+}
+
