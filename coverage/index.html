@@ -519,6 +519,7 @@ import (
         "log"
         "crypto/rand"
         "strings"
+        "unicode"
 )
 
 const (
@@ -592,6 +593,16 @@ func TrimFirstRune(s string) string <span class="cov0" title="0">{
 func TrimLastRune(s string) string <span class="cov0" title="0">{
         return s[:len(s)-1]
 }</span>
+
+func isASCII(s string) bool <span class="cov0" title="0">{
+        for i := 0; i &lt; len(s); i++ </span><span class="cov0" title="0">{
+                if s[i] &gt; unicode.MaxASCII </span><span class="cov0" title="0">{
+                        return false
+                }</span>
+        }
+        <span class="cov0" title="0">return true</span>
+}
+
 </pre>
 		
 		<pre class="file" id="file8" style="display: none">package utils
