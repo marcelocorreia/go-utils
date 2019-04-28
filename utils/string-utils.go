@@ -13,7 +13,6 @@ const (
 )
 
 func SecureRandomAlphaString(length int) string {
-
 	result := make([]byte, length)
 	bufferSize := int(float64(length) * 1.3)
 	for i, j, randomBytes := 0, 0, []byte{}; i < length; j++ {
@@ -69,4 +68,12 @@ func PrefixInSlice(prefix string, list []string) bool {
 		}
 	}
 	return false
+}
+
+func TrimFirstRune(s string) string {
+	return s[1:]
+}
+
+func TrimLastRune(s string) string {
+	return s[:len(s)-1]
 }
