@@ -270,7 +270,7 @@ func CopyFile(source string, dest string) (err error) <span class="cov0" title="
         _, err = io.Copy(destfile, sourcefile)
         if err == nil </span><span class="cov0" title="0">{
                 sourceinfo, err := os.Stat(source)
-                if err != nil </span><span class="cov0" title="0">{
+                if err == nil </span><span class="cov0" title="0">{
                         err = os.Chmod(dest, sourceinfo.Mode())
                         if err != nil </span><span class="cov0" title="0">{
                                 return nil
