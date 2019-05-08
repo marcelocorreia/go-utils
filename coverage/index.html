@@ -272,11 +272,13 @@ func CopyFile(source string, dest string) (err error) <span class="cov0" title="
                 sourceinfo, err := os.Stat(source)
                 if err != nil </span><span class="cov0" title="0">{
                         err = os.Chmod(dest, sourceinfo.Mode())
-                }</span>
-
+                        if err != nil </span><span class="cov0" title="0">{
+                                return nil
+                        }</span>
+                }
         }
 
-        <span class="cov0" title="0">return</span>
+        <span class="cov0" title="0">return nil</span>
 }
 
 func ListDir(dir string) ([]os.FileInfo) <span class="cov0" title="0">{
