@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"log"
 	"crypto/rand"
+	"log"
 	"strings"
 	"unicode"
 )

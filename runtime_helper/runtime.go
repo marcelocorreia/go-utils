@@ -1,6 +1,7 @@
 package runtime_helper
 
 import (
+	"net/http"
 	"os/exec"
 	"bytes"
 	"os"
@@ -70,4 +71,11 @@ func (r RuntimeHelper) RunCommandLogStream(command string, arg ...string) (error
 		return err
 	}
 	return nil
+}
+
+func (r RuntimeHelper) RunCommandLogStreamWeb(command string, w *http.ResponseWriter,arg ...string) (error) {
+	cmd := exec.Command(command, arg...)
+	cmd.Stdout = *w
+	cmd.Stderr = *w
+	return cmd.Run()
 }
