@@ -15,7 +15,7 @@ vendor/
 *.log
 terraform.state*
 dist/
-
+./coverage
 
 =======
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
