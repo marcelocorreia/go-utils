@@ -32,14 +32,14 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
-scoop:
-  commit_author:
-    name: marcelocorreia
-    email: marcelo@correia.io
-brew:
-  commit_author:
-    name: marcelocorreia
-    email: marcelo@correia.io
+#scoop:
+#  commit_author:
+#    name: marcelocorreia
+#    email: marcelo@correia.io
+#brew:
+#  commit_author:
+#    name: marcelocorreia
+#    email: marcelo@correia.io
 
 github_urls:
   download: https://github.com/marcelocorreia/{{ .ProjectName }}
