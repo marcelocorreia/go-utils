@@ -16,6 +16,12 @@ GIT_REPO_NAME ?= go-utils
 SEMVER_DOCKER ?= marcelocorreia/semver
 RELEASE_TYPE ?= patch
 
+
+wrap-up:
+	go mod tidy
+	go mod vendor
+
+
 snapshot:
 	-mkdir -p dist coverage
 	goreleaser  release --snapshot  --rm-dist --debug
