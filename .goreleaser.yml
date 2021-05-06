@@ -14,11 +14,25 @@ builds:
     goarch:
       - amd64
 
-archive:
-  name_template: '{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-  replacements:
-    386: i386
-    amd64: x86_64
+#archive:
+#  - id: main
+#    name_template: '{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+#    replacements:
+#      386: i386
+#      amd64: x86_64
+
+archives:
+  - id: main
+    name_template: '{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    #    files:
+    #      - xx
+
+    replacements:
+      386: i386
+      amd64: x86_64
+#      darwin: Darwin
+#      linux: Linux
+#      windows: Windows
 
 checksum:
   name_template: 'checksums.txt'

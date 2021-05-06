@@ -8,14 +8,16 @@ import (
 func Banner(message string) {
 	ascii := figlet4go.NewAsciiRender()
 	options := figlet4go.NewRenderOptions()
-	options.FontColor = []figlet4go.Color{
-		figlet4go.ColorYellow,
-		figlet4go.ColorYellow,
-	}
+	//options.FontColor = []figlet4go.Color{
+	//	figlet4go.ColorYellow,
+	//	figlet4go.ColorYellow,
+	//}
 
 	renderStr, _ := ascii.RenderOpts(message, options)
 	fmt.Print(renderStr)
 }
+
+
 
 func BannerColor(message string, colors ...figlet4go.AnsiColor) {
 	ascii := figlet4go.NewAsciiRender()
