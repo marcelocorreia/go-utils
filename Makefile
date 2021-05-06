@@ -33,6 +33,7 @@ _tag-push:
 	-git add .
 	-git commit -m "Release: $(NEXT_VERSION)"
 	-git tag $(NEXT_VERSION)
+	-git tag v$(NEXT_VERSION)
 	-git push
 	-git push --tags
 
