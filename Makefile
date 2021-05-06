@@ -14,7 +14,7 @@ SCAF := go run cmd/scafold/main.go
 GITHUB_USER ?= marcelocorreia
 GIT_REPO_NAME ?= go-utils
 SEMVER_DOCKER ?= marcelocorreia/semver
-RELEASE_TYPE ?= minor
+RELEASE_TYPE ?= major
 
 
 wrap-up:
