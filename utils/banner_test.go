@@ -1,10 +1,9 @@
-package utils_test
+package utils
 
 import (
-	"github.com/marcelocorreia/go-utils/utils"
 	"testing"
 )
 
 func TestBannerColor(t *testing.T) {
-	utils.Banner("yep")
+	Banner("yep")
 }

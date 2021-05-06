@@ -19,7 +19,7 @@ RELEASE_TYPE ?= major
 
 wrap-up:
 	go mod tidy
-	#go mod vendor
+	go mod vendor
 
 
 snapshot:

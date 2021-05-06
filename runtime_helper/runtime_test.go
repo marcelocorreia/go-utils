@@ -1,14 +1,14 @@
-package runtime_helper_test
+package runtime_helper
 
 import (
-	"testing"
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"github.com/marcelocorreia/go-utils/runtime_helper"
+	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestRunCommand(t *testing.T) {
-	r := *runtime_helper.New()
+	r := *New()
 	args := []string{"-ls"}
 	resp, e := r.RunCommand("ls", args...)
 	fmt.Println(resp, e)
