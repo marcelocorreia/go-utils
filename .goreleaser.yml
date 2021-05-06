@@ -3,8 +3,8 @@
 before:
   hooks:
     - go generate ./...
-    - go test ./... -coverprofile dist/main-cover.out -v
-    - go tool cover -html=dist/main-cover.out -o dist/dist-coverage.html
+#    - go test ./... -coverprofile dist/main-cover.out -v
+#    - go tool cover -html=dist/main-cover.out -o dist/dist-coverage.html
 
 builds:
   - env:
