@@ -1,4 +1,4 @@
-module github.com/marcelocorreia/go-utils/v4
+module github.com/marcelocorreia/go-utils/v6
 
 go 1.16
 
