@@ -5,6 +5,7 @@ import (
 	"log"
 	"strings"
 	"unicode"
+	"github.com/sethvargo/go-password/password"
 )
 
 const (
@@ -62,6 +63,7 @@ func StringInSlice(a string, list []string) bool {
 	}
 	return false
 }
+
 func PrefixInSlice(prefix string, list []string) bool {
 	for _, val := range list {
 		if strings.HasPrefix(val, prefix) {
@@ -86,5 +88,13 @@ func isASCII(s string) bool {
 		}
 	}
 	return true
+}
+
+func RandomPassword(length int, numDigits int, numSymbols int, noUpper bool, allowRepeat bool) (string, error) {
+	res, err := password.Generate(length, numDigits, numSymbols, noUpper, allowRepeat)
+	if err != nil {
+		return "", err
+	}
+	return res, nil
 }
 
