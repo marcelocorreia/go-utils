@@ -65,3 +65,6 @@ define git_push
 	-git commit -m "$1"
 	-git push
 endef
+
+_quick-push:
+	$(call git_push, "updating...")
