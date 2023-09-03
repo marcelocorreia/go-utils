@@ -6,17 +6,17 @@ import (
 )
 
 type FolderUtils interface {
-	InitialCheckAndCreate(path string) (error)
+	InitialCheckAndCreate(path string) error
 }
 type FU struct {
 }
 
-func New() (*FolderUtils) {
+func New() *FolderUtils {
 	var fu FolderUtils
 	fu = FU{}
 	return &fu
 }
-func (fu FU) InitialCheckAndCreate(path string) (error) {
+func (fu FU) InitialCheckAndCreate(path string) error {
 	result, err := utils.Exists(path)
 	if err != nil {
 		return err

@@ -1,14 +1,14 @@
 package utils
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 )
 
 /*
-	Returns the input of the question
+Returns the input of the question
 */
 func Question(question string) string {
 	var input string

@@ -1,11 +1,11 @@
 package folder_utils_test
 
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
 	"github.com/marcelocorreia/go-utils/folder_utils"
 	"github.com/marcelocorreia/go-utils/utils"
+	"github.com/stretchr/testify/assert"
 	"os"
+	"testing"
 )
 
 func TestRunCommand(t *testing.T) {

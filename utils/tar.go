@@ -2,9 +2,9 @@ package utils
 
 import (
 	"os"
-	
-	"os/exec"
+
 	"bytes"
+	"os/exec"
 )
 
 func Tar(source, target string) error {
@@ -20,10 +20,10 @@ func Tar(source, target string) error {
 }
 
 func Untar(tarball, targetDir string) error {
-	
+
 	os.Chdir(targetDir)
 	args := []string{"-xvzf", tarball}
-	
+
 	cmd := exec.Command("tar", args...)
 	var out bytes.Buffer
 	cmd.Stdout = &out

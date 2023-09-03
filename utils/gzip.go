@@ -51,5 +51,6 @@ func Gunzip(source, target string) error {
 	defer writer.Close()
 
 	_, err = io.Copy(writer, archive)
+
 	return err
 }

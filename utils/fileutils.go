@@ -1,11 +1,11 @@
 package utils
 
 import (
-	"os"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
-	"errors"
+	"os"
 )
 
 func CopyFile(source string, dest string) (err error) {
@@ -37,7 +37,7 @@ func CopyFile(source string, dest string) (err error) {
 	return nil
 }
 
-func ListDir(dir string) ([]os.FileInfo) {
+func ListDir(dir string) []os.FileInfo {
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
 		panic(err)
@@ -118,20 +118,20 @@ func Exists(path string) (bool, error) {
 	return true, err
 }
 
-func CreateNewDirectoryIfNil(path string) (bool,error) {
+func CreateNewDirectoryIfNil(path string) (bool, error) {
 	exists, err := Exists(path)
 	if err != nil {
-		return false,err
+		return false, err
 	}
 	if !exists {
 		os.MkdirAll(path, 00750)
-		return true,nil
+		return true, nil
 	} else {
-		return false,errors.New("path already exists. please check your parameters")
+		return false, errors.New("path already exists. please check your parameters")
 	}
 }
 
-func WriteFile(path string, content string) (error) {
+func WriteFile(path string, content string) error {
 	err := ioutil.WriteFile(path, []byte(content), 0750)
 	if err != nil {
 		return err

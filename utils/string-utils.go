@@ -2,10 +2,10 @@ package utils
 
 import (
 	"crypto/rand"
+	"github.com/sethvargo/go-password/password"
 	"log"
 	"strings"
 	"unicode"
-	"github.com/sethvargo/go-password/password"
 )
 
 const (
@@ -97,4 +97,3 @@ func RandomPassword(length int, numDigits int, numSymbols int, noUpper bool, all
 	}
 	return res, nil
 }
-

@@ -19,6 +19,7 @@ RELEASE_TYPE ?= major
 
 wrap-up:
 	go mod tidy
+vendor:
 	go mod vendor
 
 
